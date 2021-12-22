@@ -1,39 +1,41 @@
 from typing import Optional
 from datetime import datetime
 
-from ..schemas.base import BaseRequirementSchema
+from .base import BaseRequirementSchema
 
 # Shared properties
-class SystemRequirementBase(BaseRequirementSchema):
+class ChildRequirementBase(BaseRequirementSchema):
     doc_prefix: Optional[str] = "SRS"
+    system_requirement_id: Optional[int]
 
 
 # Properties to receive on item creation
-class SystemRequirementCreate(SystemRequirementBase):
+class ChildRequirementCreate(ChildRequirementBase):
     pass
 
 
 # Properties to receive on item update
-class SystemRequirementUpdate(SystemRequirementBase):
+class ChildRequirementUpdate(ChildRequirementBase):
     pass
 
 
 # Properties shared by models stored in DB
-class SystemRequirementInDBBase(SystemRequirementBase):
+class ChildRequirementInDBBase(ChildRequirementBase):
     id: int
     doc_prefix: str
     definition: str
     modified_date: datetime
+    system_requirement_id: int
 
     class Config:
         orm_mode = True
 
 
 # Properties to return to client
-class SystemRequirement(SystemRequirementInDBBase):
+class ChildRequirement(ChildRequirementInDBBase):
     pass
 
 
 # Properties properties stored in DB
-class SystemRequirementInDB(SystemRequirementInDBBase):
+class ChildRequirementInDB(ChildRequirementInDBBase):
     pass

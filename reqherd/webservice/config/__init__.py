@@ -41,16 +41,12 @@ def reqherd_settings():
     def connection_params():
         # If you're going to use SQLite be more elegant than this.
         if DEVELOPER_MODE is True:
-
-            def establish_database():
-                database = "reqkit.db"
-                reqherd_connection_url = f"sqlite:///reqherd/{database}"
-                engine = create_engine(reqherd_connection_url)
-                if not database_exists(engine.url):
-                    create_database(engine.url)
-                return reqherd_connection_url
-
-            return establish_database()
+            database = "reqherd.db"
+            reqherd_connection_url = f"sqlite:///reqherd/{database}"
+            engine = create_engine(reqherd_connection_url)
+            if not database_exists(engine.url):
+                create_database(engine.url)
+            return reqherd_connection_url
         else:
             # Something like this
             connection_params_dict = {

@@ -21,9 +21,9 @@ def get_system_requirements(
     """
     Retrieve system requirements.
     """
-    systemrequirements = crud.sysreq.get_multi(db, skip=skip, limit=limit)
-    logger.debug(systemrequirements)
-    return systemrequirements
+    system_requirements = crud.sysreq.get_multi(db, skip=skip, limit=limit)
+    logger.debug(system_requirements)
+    return system_requirements
 
 
 @router.post("/", response_model=List[schemas.SystemRequirement])
@@ -35,14 +35,12 @@ def create_system_requirements(
     """
     Create new system requirements.
     """
-    systemrequirements = list()
+    system_requirements = list()
     for system_requirement_in in system_requirements_in:
-        systemrequirement = crud.sysreq.create(
-            db=db, obj_in=system_requirement_in
-        )
-        systemrequirements.append(systemrequirement)
-    logger.debug(systemrequirements)
-    return systemrequirements
+        system_requirement = crud.sysreq.create(db=db, obj_in=system_requirement_in)
+        system_requirements.append(system_requirement)
+    logger.debug(system_requirements)
+    return system_requirements
 
 
 @router.put("/{id}", response_model=schemas.SystemRequirement)

@@ -1,10 +1,10 @@
-from sqlalchemy import Column, BigInteger, Unicode, DateTime
+from sqlalchemy import Column, Integer, Unicode, DateTime
 from sqlalchemy.ext.declarative import declared_attr, as_declarative
 
 
 @as_declarative()
 class Base(object):
-    id = Column(BigInteger, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
 
     @declared_attr
     def __tablename__(cls):

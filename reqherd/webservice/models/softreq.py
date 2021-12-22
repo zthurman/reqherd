@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Unicode
 from sqlalchemy.sql.schema import ForeignKey
-from sqlalchemy.sql.sqltypes import BigInteger
+from sqlalchemy import Column, Unicode, Integer, ForeignKey
 
 from ..db.baseclass import Requirement
 
@@ -9,7 +9,7 @@ class Software_Requirement(Requirement):
 
     doc_prefix = Column(Unicode(10), nullable=False, default="SWRS")
     system_requirement_id = Column(
-        BigInteger, ForeignKey("system_requirement.id"), nullable=False
+        Integer, ForeignKey("system_requirement.id"), nullable=False
     )
 
     def __repr__(self):

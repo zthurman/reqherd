@@ -10,3 +10,15 @@ reqherd_api_router.include_router(
     prefix=f"{REQHERD_API_V1_STR}/system-requirements",
     tags=["system-requirements"],
 )
+
+reqherd_api_router.include_router(
+    softreqs.router,
+    prefix=f"{REQHERD_API_V1_STR}/software-requirements",
+    tags=["software-requirements"],
+)
+
+reqherd_api_router.include_router(
+    hardreqs.router,
+    prefix=f"{REQHERD_API_V1_STR}/hardware-requirements",
+    tags=["hardware-requirements"],
+)

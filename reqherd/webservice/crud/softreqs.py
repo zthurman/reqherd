@@ -6,22 +6,22 @@ from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from reqherd.webservice.crud.base import CRUDBase
-from reqherd.webservice.models.sysreq import System_Requirement
-from reqherd.webservice.schemas.sysreq import (
-    SystemRequirementCreate,
-    SystemRequirementUpdate,
+from reqherd.webservice.models.softreq import Software_Requirement
+from reqherd.webservice.schemas.childreq import (
+    ChildRequirementCreate,
+    ChildRequirementUpdate,
 )
 
 
 logger = logging.getLogger(__name__)
 
 
-class CRUDSystemRequirement(
-    CRUDBase[System_Requirement, SystemRequirementCreate, SystemRequirementUpdate]
+class CRUDSoftwareRequirement(
+    CRUDBase[Software_Requirement, ChildRequirementCreate, ChildRequirementUpdate]
 ):
     def create(
-        self, db: Session, *, obj_in: SystemRequirementCreate
-    ) -> System_Requirement:
+        self, db: Session, *, obj_in: ChildRequirementCreate
+    ) -> Software_Requirement:
         obj_in_data = jsonable_encoder(obj_in)
         db_obj = self.model(**obj_in_data)
         db.add(db_obj)
@@ -37,7 +37,7 @@ class CRUDSystemRequirement(
 
     def get_multi(
         self, db: Session, *, skip: int = 0, limit: int = 100
-    ) -> List[System_Requirement]:
+    ) -> List[Software_Requirement]:
         query = (
             db.query(self.model).order_by(self.model.id.asc()).offset(skip).limit(limit)
         )
@@ -45,4 +45,4 @@ class CRUDSystemRequirement(
         return query.all()
 
 
-sysreq = CRUDSystemRequirement(System_Requirement)
+softreq = CRUDSoftwareRequirement(Software_Requirement)

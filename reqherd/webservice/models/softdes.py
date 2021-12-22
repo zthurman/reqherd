@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Unicode, BigInteger, ForeignKey
+from sqlalchemy import Column, Unicode, Integer, ForeignKey
 
 from ..db.baseclass import Requirement
 
@@ -7,7 +7,7 @@ class Software_Design_Element(Requirement):
 
     doc_prefix = Column(Unicode(10), nullable=False, default="SWD")
     software_requirement_id = Column(
-        BigInteger, ForeignKey("software_requirement.id"), nullable=False
+        Integer, ForeignKey("software_requirement.id"), nullable=False
     )
 
     def __repr__(self):
